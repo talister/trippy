@@ -23,7 +23,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 __author__ = 'Wesley Fraser (@wtfastro, github: fraserw <westhefras@gmail.com>), Academic email: wes.fraser@qub.ac.uk'
 
-import numpy as np, scipy as sci,emcee
+import numpy as np
+import scipy as sci
+import emcee
 from trippy import bgFinder
 import pickle
 from scipy import optimize as opti
@@ -336,7 +338,7 @@ class MCMCfitter:
             nDim = 2
             r0 = []
             for ii in range(nWalkers):
-                r0.append(np.array([x_in,y_in])+sci.randn(2)*np.array([rand_pos,rand_pos]))
+                r0.append(np.array([x_in,y_in])+np.random.randn(2)*np.array([rand_pos,rand_pos]))
             r0 = np.array(r0)
 
             #fit first using input best guess amplitude
@@ -358,7 +360,7 @@ class MCMCfitter:
             nDim = 1 # need to put two here rather than one because the fitresults code does a residual subtraction
             r0 = []
             for ii in range(nWalkers):
-                r0.append(np.array([m_in]) + sci.randn(1) * np.array([m_in*0.25]))
+                r0.append(np.array([m_in]) + np.random.randn(1) * np.array([m_in*0.25]))
             r0 = np.array(r0)
 
 
@@ -384,7 +386,7 @@ class MCMCfitter:
             nDim=3
             r0=[]
             for ii in range(nWalkers):
-                r0.append(np.array([x,y,amp])+sci.randn(3)*np.array([dx,dy,damp]))
+                r0.append(np.array([x,y,amp])+np.random.randn(3)*np.array([dx,dy,damp]))
             r0=np.array(r0)
 
 
@@ -400,7 +402,7 @@ class MCMCfitter:
             nDim = 5
             r0 = []
             for ii in range(nWalkers):
-                r0.append(np.array([x_in, y_in, m_in, rate_in, angle_in]) + sci.randn(nDim) * np.array([0.1, 0.1, m_in*0.1, rate_in*0.1, 4.0]))
+                r0.append(np.array([x_in, y_in, m_in, rate_in, angle_in]) + np.random.randn(nDim) * np.array([0.1, 0.1, m_in*0.1, rate_in*0.1, 4.0]))
             r0 = np.array(r0)
 
             #fit first using input best guess amplitude
@@ -544,7 +546,7 @@ class MCMCfitter:
         nDim=6
         r0=[]
         for ii in range(nWalkers):
-            r0.append(np.array([x_in,y_in,m_in,X_in,Y_in,m_in*bRat_in])+sci.randn(6)*np.array([1.,1.,
+            r0.append(np.array([x_in,y_in,m_in,X_in,Y_in,m_in*bRat_in])+np.random.randn(6)*np.array([1.,1.,
                                                                                                           m_in*0.4,
                                                                                                     1.,1.,
                                                                                                m_in*0.4*bRat_in]))
